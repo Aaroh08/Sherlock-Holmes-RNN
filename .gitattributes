@@ -1,0 +1,3 @@
+# Preserve the downloaded corpus exactly so its recorded SHA-256 remains valid.
+data/sherlock_holmes.txt -text
+*.pt binary

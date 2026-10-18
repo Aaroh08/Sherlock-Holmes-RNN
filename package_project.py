@@ -12,7 +12,7 @@ def main():
         raise SystemExit("Finish the results/demo experiment before packaging it.")
     destination = ROOT.parent / "sherlock-text-generator.zip"
     included_files = ["app.py", "train.py", "generate.py", "package_project.py", "start.bat",
-                      "README.md", "LICENSE", ".gitignore", "requirements.txt", "requirements-dev.txt",
+                      "README.md", "LICENSE", ".gitignore", ".gitattributes", "requirements.txt", "requirements-dev.txt",
                       "Sherlock_Text_Generation.ipynb"]
     included_directories = ["sherlock", "data", "templates", "static", "tests", "scripts", "results/demo"]
     files = [ROOT / name for name in included_files]
