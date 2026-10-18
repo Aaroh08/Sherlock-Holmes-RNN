@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baker Street · Text Lab</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a href="/" class="brand"><span class="monogram">B<span>·</span>S</span><span>BAKER STREET<span class="brand-sub">A RECURRENT LANGUAGE LAB</span></span></a>
+    <nav aria-label="Main navigation"><button class="nav-button active" data-view="studio" aria-pressed="true">Writing room</button><button class="nav-button" data-view="experiments" aria-pressed="false">Experiments</button></nav>
+    <span id="connection" class="connection"><i></i> Checking models</span>
+  </header>
+  <main>
+    <section class="intro"><p class="eyebrow">THE ADVENTURES OF SHERLOCK HOLMES / A MACHINE LEARNING STUDY</p><h1>A familiar world.<br><em>An unwritten next word.</em></h1><div class="intro-bottom"><p>Four recurrent networks. One collection of mysteries.<br>Give the model a beginning and see where the language leads.</p><span class="folio">EST. 1892 &nbsp; / &nbsp; REIMAGINED WITH RNNs</span></div></section>
+    <div id="setup" class="notice" hidden><strong>Your writing room is ready. The models need training.</strong><p>Run <code>python train.py --output results/demo</code>, then refresh this page. You can also open another trained run with <code>python app.py --run-dir results/my-run</code>.</p></div>
+    <section id="studio" aria-label="Writing room">
+      <div class="workspace">
+        <form id="generation-form" class="controls">
+          <div class="section-heading"><span class="eyebrow">01 / THE BEGINNING</span><span class="small">YOUR INPUT</span></div>
+          <label for="prompt">Set the scene</label><textarea id="prompt" rows="4" maxlength="2000" required>Sherlock Holmes looked at me and said</textarea>
+          <div class="prompt-chips" aria-label="Example prompts"><button type="button" data-prompt="Sherlock Holmes looked at me and said">At Baker Street</button><button type="button" data-prompt="The inspector opened the door and found">An unexpected visitor</button><button type="button" data-prompt="It was a cold morning when we arrived at">A cold morning</button></div>
+          <div class="rule"></div>
+          <label for="model">Choose a model <span class="label-note">RECURRENT ARCHITECTURE</span></label><select id="model"><option value="rnn">Simple RNN</option><option value="birnn">Bidirectional RNN</option><option value="lstm">LSTM</option><option value="gru" selected>GRU</option></select>
+          <p id="model-description" class="help">Gated memory with a compact recurrent state.</p>
+          <div class="range-heading"><label for="temperature">Temperature</label><output id="temperature-value" for="temperature">0.8</output></div><input id="temperature" type="range" min="0.1" max="2" step="0.1" value="0.8"><div class="range-ends"><span>More predictable</span><span>More exploratory</span></div>
+          <div class="form-row"><div><label for="new-tokens">New tokens</label><input id="new-tokens" type="number" min="1" max="300" value="60" required></div><div><label for="seed">Random seed</label><input id="seed" type="number" min="0" max="4294967295" value="42" required></div></div>
+          <details><summary>Advanced sampling</summary><div class="form-row"><div><label for="top-k">Top-k <span class="small">0 = off</span></label><input id="top-k" type="number" min="0" max="1000" value="40" required></div><div><label for="top-p">Top-p</label><input id="top-p" type="number" min="0.01" max="1" step="0.01" value="0.95" required></div></div><label class="checkbox"><input id="greedy" type="checkbox"> Always choose the most likely token</label><p class="help">Greedy mode ignores temperature, top-k, and top-p.</p></details>
+          <button id="generate" class="primary" type="submit" disabled>Continue the story <span aria-hidden="true">↗</span></button><p class="help bottom-help">Runs locally. A token is a word or punctuation mark.</p>
+        </form>
+        <article class="manuscript" aria-label="Generated text">
+          <div class="section-heading"><span class="eyebrow">02 / THE CONTINUATION</span><span id="output-meta" class="small">AWAITING YOUR FIRST LINE</span></div>
+          <div id="empty-output" class="empty-output"><span class="chapter">I.</span><h2>Every mystery begins<br>with a few words.</h2><p>Choose a model and continue the story.<br>The next line is a probability, waiting to be written.</p><span class="ornament" aria-hidden="true">✦</span></div>
+          <div id="result" hidden><p class="manuscript-label">FROM THE NOTEBOOK</p><div id="generated-text" class="generated-text" aria-live="polite"></div><p id="unknown-words" class="help"></p></div>
+          <div id="error" class="error" role="alert" hidden></div>
+          <footer class="manuscript-footer"><span id="output-count">A new page, a new possibility.</span><div><button id="copy" class="text-button" type="button" disabled>Copy text</button><button id="download" class="text-button" type="button" disabled>Save .txt</button></div></footer>
+        </article>
+      </div>
+      <aside class="expectation"><span class="eyebrow">A NOTE ON THE EXPERIMENT</span><p>These small models learn word patterns from a single book. Expect fragments, repetition, and occasional surprises. They are an experiment in next-word prediction; coherent mysteries remain a harder problem.</p></aside>
+    </section>
+    <section id="experiments" aria-label="Experiment results" hidden>
+      <div class="experiment-heading"><div><p class="eyebrow">MEASURED, NOT IMAGINED</p><h2>Inside the experiment.</h2></div><button id="refresh" class="outline" type="button">Refresh results ↻</button></div>
+      <p id="run-detail" class="help">No run loaded.</p><div id="stats" class="stats"></div>
+      <div class="table-wrap"><table><caption>Held-out test results · checkpoints selected using validation loss</caption><thead><tr><th scope="col">Architecture</th><th scope="col">Best epoch</th><th scope="col">Validation loss</th><th scope="col">Test perplexity ↓</th><th scope="col">Top-1 accuracy</th><th scope="col">Training time</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+      <p id="no-metrics" class="notice">Train a model to see its measured results here.</p><p class="help">Perplexity is exp(test cross-entropy). Accuracy includes punctuation and unknown tokens. Compare metrics only across the same corpus split and vocabulary.</p>
+      <div id="plots" class="plots" hidden><figure><img id="loss-plot" alt="Training and validation loss, and validation accuracy by epoch" loading="lazy"><figcaption>Learning over time</figcaption></figure><figure><img id="temperature-plot" alt="Unique word, unique bigram, and repeated trigram ratios at four sampling temperatures" loading="lazy"><figcaption>Temperature and diversity</figcaption></figure></div>
+    </section>
+    <footer class="page-footer"><span>BAKER STREET TEXT LAB</span><span>Arthur Conan Doyle’s text · PyTorch models · Your next line</span><a href="https://www.gutenberg.org/ebooks/1661" target="_blank" rel="noreferrer">Explore the source text ↗</a></footer>
+  </main>
+</body>
+</html>

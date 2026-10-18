@@ -1,0 +1,113 @@
+{
+  "source": "C:\\Users\\Aaroh\\Desktop\\work\\Depression detection\\sherlock-text-generator\\data\\sherlock_holmes.txt",
+  "sha256": "922e2a12ccb43a4c9544c260b2166c6ad2097aeb5957faeee113f173bb857cd0",
+  "total_tokens": 120630,
+  "vocabulary_size": 3926,
+  "context_length": 20,
+  "vocabulary_fit": "training split only",
+  "split_boundaries": [
+    0,
+    96504,
+    108567,
+    120630
+  ],
+  "splits": {
+    "train": {
+      "tokens": 96504,
+      "sequences": 96484,
+      "unknown_rate": 0.03508662853353229
+    },
+    "validation": {
+      "tokens": 12063,
+      "sequences": 12043,
+      "unknown_rate": 0.060598524413495815
+    },
+    "test": {
+      "tokens": 12063,
+      "sequences": 12043,
+      "unknown_rate": 0.07170687225399984
+    }
+  },
+  "top_words": [
+    [
+      "the",
+      4615
+    ],
+    [
+      "and",
+      2454
+    ],
+    [
+      "i",
+      2279
+    ],
+    [
+      "of",
+      2207
+    ],
+    [
+      "to",
+      2156
+    ],
+    [
+      "a",
+      2155
+    ],
+    [
+      "in",
+      1413
+    ],
+    [
+      "that",
+      1362
+    ],
+    [
+      "it",
+      1350
+    ],
+    [
+      "he",
+      1174
+    ],
+    [
+      "you",
+      1137
+    ],
+    [
+      "was",
+      1109
+    ],
+    [
+      "his",
+      949
+    ],
+    [
+      "is",
+      915
+    ],
+    [
+      "my",
+      770
+    ],
+    [
+      "have",
+      718
+    ],
+    [
+      "as",
+      683
+    ],
+    [
+      "with",
+      649
+    ],
+    [
+      "had",
+      643
+    ],
+    [
+      "which",
+      625
+    ]
+  ]
+}

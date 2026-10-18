@@ -1,0 +1,12 @@
+.venv/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+.cache/
+pytest-cache-files-*/
+.ipynb_checkpoints/
+*.pyc
+*.log
+results/*/checkpoints/
+!results/demo/checkpoints/
+results/smoke/

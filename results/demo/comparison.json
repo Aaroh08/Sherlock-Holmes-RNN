@@ -1,0 +1,50 @@
+[
+  {
+    "model": "rnn",
+    "parameters": 782550,
+    "epochs_run": 8,
+    "best_epoch": 7,
+    "validation_loss": 4.531156721141245,
+    "test_loss": 4.474305835146747,
+    "test_perplexity": 87.73367763151701,
+    "test_accuracy": 0.18741177447479865,
+    "test_top5_accuracy": 0.4251432367350328,
+    "training_seconds": 238.50818979999167
+  },
+  {
+    "model": "birnn",
+    "parameters": 1309910,
+    "epochs_run": 8,
+    "best_epoch": 5,
+    "validation_loss": 4.647673834976757,
+    "test_loss": 4.583771833874187,
+    "test_perplexity": 97.8828968308023,
+    "test_accuracy": 0.18276177032300922,
+    "test_top5_accuracy": 0.4121896537407623,
+    "training_seconds": 179.1774895999988
+  },
+  {
+    "model": "lstm",
+    "parameters": 857046,
+    "epochs_run": 8,
+    "best_epoch": 8,
+    "validation_loss": 4.505634904274025,
+    "test_loss": 4.453647176599538,
+    "test_perplexity": 85.93981078204438,
+    "test_accuracy": 0.19446981649090758,
+    "test_top5_accuracy": 0.4258075230424313,
+    "training_seconds": 334.7137480000092
+  },
+  {
+    "model": "gru",
+    "parameters": 832214,
+    "epochs_run": 8,
+    "best_epoch": 8,
+    "validation_loss": 4.462195854057142,
+    "test_loss": 4.413589277349021,
+    "test_perplexity": 82.56528199579552,
+    "test_accuracy": 0.19779124802790002,
+    "test_top5_accuracy": 0.4341111018849124,
+    "training_seconds": 470.2755641999829
+  }
+]
